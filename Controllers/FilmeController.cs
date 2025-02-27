@@ -11,7 +11,7 @@ namespace api_filmes_senai.Controllers
     [Produces("application/json")]
     public class FilmeController : ControllerBase
     {
-        private readonly IFilmeRepository _filmeRepository;    
+        private readonly IFilmeRepository _filmeRepository;
 
         public FilmeController(IFilmeRepository filmeRepository)
         {
@@ -95,18 +95,20 @@ namespace api_filmes_senai.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpGet("genero/{idGenero}")]
-        public IActionResult ListarPorGenero(Guid idGenero)
+
+        [HttpGet("ListarPorGenero/{id}")]
+        public IActionResult GetByGenero(Guid id)
         {
-            var filmes = _filmeRepository.ListarPorGenero(idGenero);
-
-            if (filmes == null || !filmes.Any())
+            try
             {
-                return NotFound(new { mensagem = "Nenhum filme encontrado para este gênero." });
+                List<Filme> ListaDeFilmePorGenero = _filmeRepository.ListarPorGenero(id);
+
+                return Ok(ListaDeFilmePorGenero);
             }
-
-            return Ok(filmes);
+            catch (Exception e )
+            {
+                return BadRequest(e.Message);
+            }
         }
-
     }
 }

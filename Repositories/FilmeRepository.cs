@@ -8,6 +8,7 @@ namespace api_filmes_senai.Repositories
     public class FilmeRepository : IFilmeRepository
     {
         private readonly Filmes_Context _context;
+        private Guid idGenero;
 
         public FilmeRepository(Filmes_Context context)
         {
@@ -77,9 +78,19 @@ namespace api_filmes_senai.Repositories
 
         public List<Filme> Listar()
         {
+            List<Filme> listaFilme = _context.Filmes.ToList();
+            return listaFilme;
+        }
+
+        public List<Filme> ListarPorGenero(Guid idGenero)
+        {
             try
             {
-                List<Filme> listaDeFilmes = _context.Filmes.ToList();
+                List<Filme> listaDeFilmes = _context.Filmes
+                    .Include(g => g.Genero)
+                    .Where(f => f.IdGenero == idGenero)
+                    .ToList();
+
                 return listaDeFilmes;
             }
             catch (Exception)
@@ -89,14 +100,6 @@ namespace api_filmes_senai.Repositories
             }
         }
 
-        public static implicit operator FilmeRepository(Filmes_Context v)
-        {
-            throw new NotImplementedException();
-        }
-        public List<Filme> ListarPorGenero(Guid idGenero)
-        {
-            return _context.Filmes.Where(f => f.IdGenero == idGenero).ToList();
-        }
-
+        
     }
 }
