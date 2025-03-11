@@ -8,7 +8,7 @@ namespace api_filmes_senai.Repositories
     public class FilmeRepository : IFilmeRepository
     {
         private readonly Filmes_Context _context;
-        private Guid idGenero;
+        
 
         public FilmeRepository(Filmes_Context context)
         {

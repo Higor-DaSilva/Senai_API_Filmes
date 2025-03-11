@@ -8,7 +8,8 @@ namespace api_filmes_senai.Interfaces
         void Cadastrar(Usuario novoUsuario);
 
         Usuario BuscarPorId(Guid id);
+
         Usuario BuscarPorEmailESenha(string email, string senha);
-        void Cadastrar(UsuarioRepository usuario);
+        
     }
 }

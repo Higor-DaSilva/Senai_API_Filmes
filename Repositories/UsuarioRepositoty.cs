@@ -48,12 +48,6 @@ namespace api_filmes_senai.Repositories
                 throw;
             }
         }
-
-        public Usuario BuscarPorEmail(string email, string senha)
-        {
-            throw new NotImplementedException();
-        }
-
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             try
@@ -69,18 +63,15 @@ namespace api_filmes_senai.Repositories
                         return usuarioBuscado;
                     }
                 }
-                return null;
+
+                return null!;
             }
+
             catch (Exception)
             {
 
                 throw;
             }
-        }
-
-        public void Cadastrar(UsuarioRepository usuario)
-        {
-            throw new NotImplementedException();
         }
     }
 }

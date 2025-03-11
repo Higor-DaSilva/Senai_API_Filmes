@@ -1,21 +1,24 @@
-﻿using api_filmes_senai.Interfaces;
+﻿using api_filmes_senai.Domains;
+using api_filmes_senai.Interfaces;
 using api_filmes_senai.Repositories;
+using api_filmes_senai.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_filmes_senai.Controllers
 {
-    [Route("api/[controllador]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class UsuarioController : Controller
+    public class UsuarioController : ControllerBase
     {
-       private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioController(UsuarioRepository usuarioRepository) 
+        private readonly IUsuarioRepository _usuarioRepository;
+        public UsuarioController(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
-        [HttpGet]
-        public IActionResult Post(UsuarioRepository usuario)
+
+        [HttpPost]
+        public IActionResult Post(Usuario usuario)
         {
             try
             {
@@ -26,8 +29,51 @@ namespace api_filmes_senai.Controllers
             catch (Exception error)
             {
 
-               return BadRequest(error.Message);
+                return BadRequest(error.Message);
             }
         }
+
+        //Buscar por ID
+        [HttpGet("{id}")]
+        public IActionResult GetByld(Guid id)
+        {
+            try
+            {
+                Usuario usuarioBuscado = _usuarioRepository.BuscarPorId(id);   
+
+                if (usuarioBuscado != null)
+                {
+                    return Ok(usuarioBuscado); 
+                }
+                return null!;
+
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        //[HttpGet("BuscarPorEmailESenha")]
+        //public IActionResult GetActionResult(string email, string senha)
+        //{
+        //    try
+        //    {
+        //        Usuario usuarioBuscado = _usuarioRepository.BuscarPorEmailESenha(email, senha);
+
+        //        if (usuarioBuscado != null)
+        //        {
+        //            return Ok(usuarioBuscado);
+        //        }
+        //        return null!;
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        return BadRequest (e.Message);
+        //    }
+        //}
+        
     }
 }

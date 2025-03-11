@@ -21,7 +21,7 @@ namespace api_filmes_senai.Domains
         [Required(ErrorMessage ="O email é obrigatório!")]
         public string? Email { get; set; }
 
-        [Column(TypeName ="VARCHAR(50)")]
+        [Column(TypeName ="VARCHAR(60)")]
         [Required(ErrorMessage ="A senha é obrigatória")]
         [StringLength(60,MinimumLength = 6, ErrorMessage ="A senha deve conter no mínimo r caracteres e no máximo 60")]
 
