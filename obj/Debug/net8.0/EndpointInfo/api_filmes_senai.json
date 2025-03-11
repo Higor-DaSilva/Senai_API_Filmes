@@ -20,6 +20,7 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint Listar os filmes",
         "responses": {
           "200": {
             "description": "OK"
@@ -30,6 +31,7 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint para postar um filme",
         "requestBody": {
           "content": {
             "application/json": {
@@ -61,10 +63,12 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint buscar um livro por ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -84,10 +88,12 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint para deletar um filme",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -105,10 +111,12 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint para buscar um genero pelo seu id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "",
             "required": true,
             "schema": {
               "type": "string",
@@ -117,6 +125,7 @@
           }
         ],
         "requestBody": {
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -147,10 +156,12 @@
         "tags": [
           "Filme"
         ],
+        "summary": "Endpoint Listar um filme por Genero",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -170,6 +181,7 @@
         "tags": [
           "Genero"
         ],
+        "summary": "Endpoint Listar os Generos",
         "responses": {
           "200": {
             "description": "OK"
@@ -180,6 +192,7 @@
         "tags": [
           "Genero"
         ],
+        "summary": "Endpoint para Cadastar um Genero",
         "requestBody": {
           "content": {
             "application/json": {
@@ -215,6 +228,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Id do GÊnero",
             "required": true,
             "schema": {
               "type": "string",
@@ -234,10 +248,12 @@
         "tags": [
           "Genero"
         ],
+        "summary": "Endpoint para Deletar um Genero",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -255,10 +271,12 @@
         "tags": [
           "Genero"
         ],
+        "summary": "Endpoint para Atualizar um Genero",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -328,6 +346,7 @@
         "tags": [
           "Usuario"
         ],
+        "summary": "Endpoint Cadastrar um Usuario",
         "requestBody": {
           "content": {
             "application/json": {
@@ -359,10 +378,12 @@
         "tags": [
           "Usuario"
         ],
+        "summary": "Endpoint Buscar um Usuario Por ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Id do Genero Buscado",
             "required": true,
             "schema": {
               "type": "string",
@@ -396,6 +417,7 @@
           },
           "idGenero": {
             "type": "string",
+            "description": "Referência da tabela Genero",
             "format": "uuid"
           },
           "genero": {
@@ -468,6 +490,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Value: Bearer TokenJWT ",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }
